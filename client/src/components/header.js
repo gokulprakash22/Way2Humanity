@@ -27,7 +27,7 @@ export default function Header(props){
       <AppBar position="fixed" color="primary">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-          <Link to={user.isAuth?'posts':'/'} className={classes.link}>
+          <Link to={user.isAuth?'/posts':'/'} className={classes.link}>
             Way2Humanity
             </Link>
           </Typography>
