@@ -1,25 +1,21 @@
-import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import Button from '@material-ui/core/Button';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import { makeStyles } from '@material-ui/core/styles';
-import {Link} from 'react-router-dom';
-import Hidden from '@material-ui/core/Hidden';
+import React from 'react'
+import {Link} from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles'
+import {CssBaseline,Typography,Container,Button,Hidden} from '@material-ui/core'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 
 const useStyles= makeStyles((theme) => ({
     grid:{
         marginTop: theme.spacing(15),
-        padding:20,
+        padding:20
     },
     link:{
       textDecoration:'none'
-    },
+    }
 }))
 
-export default function Final(props) {
-    const classes = useStyles();
+export default function Final(props){
+  const classes = useStyles()
   return (
     <React.Fragment>
       <CssBaseline />
@@ -39,5 +35,5 @@ export default function Final(props) {
 </Button></Link>
       </Container>
     </React.Fragment>
-  );
+  )
 }

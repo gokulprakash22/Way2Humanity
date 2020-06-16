@@ -1,22 +1,14 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
-import MenuIcon from '@material-ui/icons/Menu';
-
+import React from 'react'
+import {Link} from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles'
+import {Button,Menu,List,ListItem,ListItemIcon,ListItemText} from '@material-ui/core'
+import AccountCircleIcon from '@material-ui/icons/AccountCircle'
+import VpnKeyIcon from '@material-ui/icons/VpnKey'
+import MenuIcon from '@material-ui/icons/Menu'
 
 const useStyles = makeStyles((theme) => ({
   icon:{
-    color: 'white',
+    color: 'white'
   },
   link:{
     color: 'black',
@@ -26,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LSMenu() {
   const classes = useStyles();
-
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -69,5 +60,5 @@ export default function LSMenu() {
       </List>
       </Menu>
     </div>
-  );
+  )
 }

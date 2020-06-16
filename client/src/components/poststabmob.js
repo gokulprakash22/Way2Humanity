@@ -1,47 +1,42 @@
-import React,{useState,useContext} from 'react';
-import {Context} from './context.js';
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
+import React,{useState,useContext} from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import {List,ListItem,ListItemText,MenuItem,Menu} from '@material-ui/core'
+import {Context} from './index'
 
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    paddingTop: theme.spacing(6),
-  },
-}));
+    paddingTop: theme.spacing(6)
+  }
+}))
 
 const options = [
   'All Posts',
   'Volunteers Posts',
   'Need Help Posts',
   'My Posts'
-];
+]
 
 export default function PostsTabMob() {
   const classes = useStyles();
-  const {pageNoContext,postsContext} = useContext(Context)
+  const {pageNoContext} = useContext(Context)
   const [pageNo,setPageNo] = pageNoContext
-  const [posts,setPosts] = postsContext
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedIndex, setSelectedIndex] = useState(pageNo);
+  const [anchorEl, setAnchorEl] = useState(null)
+  const [selectedIndex, setSelectedIndex] = useState(pageNo)
 
   const handleClickListItem = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
 
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setPageNo(index)
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
   const handleClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
   return (
     <div className={classes.root}>
@@ -71,5 +66,5 @@ export default function PostsTabMob() {
         ))}
       </Menu>
     </div>
-  );
+  )
 }

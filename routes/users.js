@@ -2,10 +2,9 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require('passport')
-const passportLocalMongoose = require('passport-local-mongoose')
 const User = require('../models/user');
 
-router.get("/verify",function(req,res){
+router.get("/verify",(req,res) => {
   if(req.isAuthenticated()){
     res.json({msg:"Correct",name:req.user.fullname,email:req.user.username})
 }
@@ -14,7 +13,7 @@ else{
 }
 })
 
-router.post('/signup', function(req, res) {
+router.post('/signup',(req, res) => {
   if(req.body.fname===''){
     res.json({msg:"Please Fill The First Name Field",element:"fname"})
   }
@@ -40,7 +39,7 @@ router.post('/signup', function(req, res) {
     res.json({msg:"Password And Confirm Password Fields Does Not Match",element:"confirmpassword"})
   }
   else{
-  User.findOne({username:req.body.username},function(err,user){
+  User.findOne({username:req.body.username},(err,user) => {
     if(err){
         console.log(err)
         res.json({msg:"Some Error Occurred. Please Try Again"})
@@ -51,13 +50,13 @@ router.post('/signup', function(req, res) {
         }
         else{
             const fullname=req.body.fname+' '+req.body.lname
-            User.register(new User({username: req.body.username,fullname:fullname}), req.body.password, function(err,user) {
+            User.register(new User({username: req.body.username,fullname:fullname}), req.body.password,(err,user) => {
               if(err){
                 console.log(err)
                 res.json({msg:"Some Error Occurred. Please Try Again"})
               }
               else{
-                passport.authenticate("local")(req, res, function(){
+                passport.authenticate("local")(req, res,() => {
                   res.json({msg:"Correct",name:fullname,email:user.username})
               })
               }
@@ -71,21 +70,19 @@ router.post('/login',passport.authenticate("local",
   {
     successRedirect: "/api/users/success",
     failureRedirect: "/api/users/failure"
-  }), function(req, res) {
+  }),(req, res) => {
 })
-
-
-
-router.get("/success",function(req,res){
+router.get("/success",(req,res) => {
     res.json({msg:"Correct",name:req.user.fullname,email:req.user.username})
 })
-
-router.get("/failure",function(req,res){
+router.get("/failure",(req,res) => {
     res.json({msg:"Invalid Credentials"})
 })
 
-router.get("/logout", function(req, res){
-  req.logout();
+router.get("/logout",(req, res) => {
+  if(req.isAuthenticated()){
+    req.logout();
+  }
   res.json({msg:"Correct"})
 });
 

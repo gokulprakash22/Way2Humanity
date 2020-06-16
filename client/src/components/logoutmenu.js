@@ -1,17 +1,10 @@
-import React,{useState,useContext} from 'react';
-import {Context} from './context.js';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import Hidden from '@material-ui/core/Hidden';
-import {Link} from 'react-router-dom';
+import React,{useState,useContext} from 'react'
+import {Link} from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles'
+import {Button,Menu,List,ListItem,ListItemIcon,ListItemText,Hidden} from '@material-ui/core'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
+import AccountBoxIcon from '@material-ui/icons/AccountBox'
+import {Context} from './index'
 
 const useStyles = makeStyles((theme) => ({
     text: {
@@ -27,7 +20,7 @@ export default function LogoutMenu(props) {
     const classes = useStyles();
     const {userContext} = useContext(Context)
     const [user,setUser] = userContext
-  const [anchorEl, setAnchorEl] = useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -65,5 +58,5 @@ export default function LogoutMenu(props) {
         
       </Menu>
     </div>
-  );
+  )
 }

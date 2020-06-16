@@ -1,25 +1,14 @@
-import React,{useContext} from 'react';
-import {Context} from './context.js';
-import axios from 'axios';
-import {Link} from 'react-router-dom';
-import List from '@material-ui/core/List';
-import red from '@material-ui/core/colors/red';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
-import IconButton from '@material-ui/core/IconButton';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
-import Container from '@material-ui/core/Container';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Chip from '@material-ui/core/Chip';
-import Divider from '@material-ui/core/Divider';
-import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
-import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
-import Hidden from '@material-ui/core/Hidden';
-import { makeStyles } from '@material-ui/core/styles';
+import React,{useContext} from 'react'
+import {Link} from 'react-router-dom'
+import axios from 'axios'
+import { makeStyles } from '@material-ui/core/styles'
+import red from '@material-ui/core/colors/red'
+import {ListItem,ListItemSecondaryAction,ListItemText,IconButton,Chip,Divider,Hidden} from '@material-ui/core'
+import DeleteIcon from '@material-ui/icons/Delete'
+import EditIcon from '@material-ui/icons/Edit'
+import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew'
+import PriorityHighIcon from '@material-ui/icons/PriorityHigh'
+import {Context} from './index'
 
 const useStyles = makeStyles((theme) => ({
     link:{
@@ -35,8 +24,7 @@ const useStyles = makeStyles((theme) => ({
 export default function MyPostList(props) {
 const classes = useStyles();
 const id=props.id
-const {pageNoContext,postsContext} = useContext(Context)
-const [pageNo,setPageNo] = pageNoContext
+const {postsContext} = useContext(Context)
 const [posts,setPosts] = postsContext
 
 const handleDelete = () =>{
@@ -57,7 +45,7 @@ const handleDelete = () =>{
         <Link to={'/posts/'+id} className={classes.link}>
             <Chip
                 icon={<AccessibilityNewIcon  fontSize="small" />}
-                label={(props.title.slice(0,12))+(props.title.length>12&&'...')}
+                label={(props.title.slice(0,12))+(props.title.length>12?'...':'')}
                 color="primary"
                 style={{marginRight:10}}
         />
@@ -80,7 +68,7 @@ const handleDelete = () =>{
         <Link to={'/posts/'+id} className={classes.link}>
         <Chip
             icon={<PriorityHighIcon  fontSize="small" />}
-            label={(props.title.slice(0,12))+(props.title.length>12&&'...')}
+            label={(props.title.slice(0,12))+(props.title.length>12?'...':'')}
             color="secondary"
             style={{marginRight:10}}
         />
@@ -117,5 +105,5 @@ const handleDelete = () =>{
         
         <Divider />
             </>
-  );
+  )
 }

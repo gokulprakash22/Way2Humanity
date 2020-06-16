@@ -1,10 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require("mongoose");
+const cloudinary = require('cloudinary').v2
+cloudinary.config({
+    cloud_name: 'gocloud',
+    api_key: '268918813461829',
+    api_secret: process.env.CLOUDINARY_SECRET
+})
 const Post = require('../models/post');
 
-router.get("/getposts",function(req,res){
-    Post.find(function(err,posts){
+router.get("/getposts",(req,res) => {
+    Post.find((err,posts) => {
         if(err){
             console.log(err)
             res.json({msg:"Some Error Occurred. Please Try Again"})
@@ -14,8 +20,9 @@ router.get("/getposts",function(req,res){
         }
     })
 })
-router.get("/getpost/:id",function(req,res){
-    Post.findById(req.params.id,function(err,post){
+
+router.get("/getpost/:id",(req,res) => {
+    Post.findById(req.params.id,(err,post) => {
         if(err){
             console.log(err)
             res.json({msg:"Some Error Occurred. Please Try Again"})
@@ -26,8 +33,7 @@ router.get("/getpost/:id",function(req,res){
     })
 })
 
-
-router.post("/createpost",function(req,res){
+router.post("/createpost",(req,res) => {
     if(req.body.category===''){
         res.json({msg:"Please Fill The Category Field",element:"category"})
     }
@@ -49,9 +55,7 @@ router.post("/createpost",function(req,res){
             res.json({msg:"Please Upload Only jpeg/png Formatted Image"})
         }
         else{
-            const filename=Date.now()+'_'+file.name
-            const imgpath='./client/build/uploads/'+filename
-            file.mv(imgpath,function(err){
+            cloudinary.uploader.upload(file.tempFilePath,(err,result) => {
                 if(err){
                     console.log(err)
                     res.json({msg:"Some Error Occurred. Please Try Again"})
@@ -65,11 +69,11 @@ router.post("/createpost",function(req,res){
                         title:req.body.title,
                         description:req.body.description,
                         contact:req.body.contact,
-                        imgpath:filename,
+                        imgpath:result.url,
                         date:(('0'+date.getDate()).slice(-2))+'/'+(('0'+(date.getMonth()+1)).slice(-2))+'/'+date.getFullYear(),
                         time:(('0'+date.getHours()).slice(-2))+':'+(('0'+date.getMinutes()).slice(-2))+':'+(('0'+date.getSeconds()).slice(-2)),
                     })
-                    newpost.save(function(err){
+                    newpost.save((err) => {
                         if(err){
                             console.log(err)
                             res.json({msg:"Some Error Occurred. Please Try Again"})
@@ -79,13 +83,12 @@ router.post("/createpost",function(req,res){
                         }
                     })
                 }
-            }) 
+            })
         }
-         
-    }    
+    }  
 })
 
-router.put("/updatepost/:id",function(req,res){
+router.put("/updatepost/:id",(req,res) => {
     if(req.body.title===''){
         res.json({msg:"Please Fill The Title Field",element:"title"})
     }
@@ -101,9 +104,7 @@ router.put("/updatepost/:id",function(req,res){
             res.json({msg:"Only jpeg/png Image Formarts Are Supported",element:"image"})
         }
         else{
-            const filename=Date.now()+'_'+file.name
-            const imgpath='./client/build/uploads/'+filename
-            file.mv(imgpath,function(err){
+            cloudinary.uploader.upload(file.tempFilePath,(err,result) => {
                 if(err){
                     console.log(err)
                     res.json({msg:"Some Error Occurred. Please Try Again"})
@@ -117,8 +118,8 @@ router.put("/updatepost/:id",function(req,res){
                             title:req.body.title,
                             description:req.body.description,
                             contact:req.body.contact,
-                            imgpath:filename,
-                        },function(err){
+                            imgpath:result.url,
+                        },(err) => {
                             if(err){
                                 console.log(err)
                                 res.json({msg:"Some Error Occurred. Please Try Again"})
@@ -127,7 +128,6 @@ router.put("/updatepost/:id",function(req,res){
                                 res.json({msg:"Correct"})
                             }
                         })
-                    
                 }
             })
         }
@@ -141,7 +141,7 @@ router.put("/updatepost/:id",function(req,res){
                 title:req.body.title,
                 description:req.body.description,
                 contact:req.body.contact,
-            },function(err){
+            },(err) => {
                 if(err){
                     console.log(err)
                     res.json({msg:"Some Error Occurred. Please Try Again"})
@@ -152,11 +152,9 @@ router.put("/updatepost/:id",function(req,res){
             })
     }
 })
-    
-      
 
-router.delete("/deletepost/:id",function(req,res){
-    Post.findByIdAndDelete(req.params.id,function(err){
+router.delete("/deletepost/:id",(req,res) => {
+    Post.findByIdAndDelete(req.params.id,(err) => {
         if(err){
             console.log(err)
             res.json({msg:"Some Error Occurred. Please Try Again"})

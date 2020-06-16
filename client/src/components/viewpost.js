@@ -1,56 +1,43 @@
-import React,{useState,useEffect,useContext} from 'react';
-import {Context} from './context.js';
-import axios from 'axios';
-import {Link} from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Chip from '@material-ui/core/Chip';
-import FaceIcon from '@material-ui/icons/Face';
-import MailOutlineIcon from '@material-ui/icons/MailOutline';
-import Container from '@material-ui/core/Container';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
-import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
+import React,{useState,useEffect} from 'react'
+import {Link} from 'react-router-dom'
+import axios from 'axios'
+import { makeStyles } from '@material-ui/core/styles'
+import {Card,CardActions,CardContent,CardMedia,Button,Typography,Chip,Container,CssBaseline,TextField} from '@material-ui/core'
+import FaceIcon from '@material-ui/icons/Face'
+import MailOutlineIcon from '@material-ui/icons/MailOutline'
+import PriorityHighIcon from '@material-ui/icons/PriorityHigh'
+import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew'
 
 const useStyles = makeStyles((theme) => ({
   card: {
     height: '100%',
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   link: {
     textDecoration:'none'
   },
   cardMedia: {
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '56.25%' // 16:9
   },
   cardContent: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   cardGrid: {
     paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
+    paddingBottom: theme.spacing(8)
   }
-}));
+}))
 
 export default function ViewPost(props) {
-  const classes = useStyles();
-  const {pageNo,setPageNo} = useContext(Context)
+  const classes = useStyles()
   const id=props.match.params.id
-  const [data,setData] = useState([])
-  const [imgpath,setImgpath]= useState('')
+  const [data,setData] = useState({})
 
   useEffect(() => {
     axios.get('/api/posts/getpost/'+id)
       .then(res => {
         setData(res.data)
-        setImgpath('../uploads/'+res.data.imgpath)
       })
       .catch(err => {
         console.log(err)
@@ -64,7 +51,7 @@ export default function ViewPost(props) {
     <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image={imgpath}
+                    image={data.imgpath}
                     title="Image title"
                   />
                   <CardContent className={classes.cardContent}>
@@ -80,25 +67,22 @@ export default function ViewPost(props) {
                     color="secondary"
                   />}
                     <Typography gutterBottom variant="h5" component="h2">
-                      {data.title}
-                      
+                      {data.title} 
                     </Typography>
-                    
                     <Typography>
                       {data.description}
                     </Typography>
                     <TextField
-            margin="normal"
-            fullWidth
-            variant="outlined"
-            name="contact details"
-            label="Contact/Donation Details"
-            defaultValue={data.contact}
-            multiline
-            InputLabelProps={{shrink: true}}
-            InputProps={{readOnly: true}}
-          />
-
+                      margin="normal"
+                      fullWidth
+                      variant="outlined"
+                      name="contact details"
+                      label="Contact/Donation Details"
+                      defaultValue={data.contact}
+                      multiline
+                      InputLabelProps={{shrink: true}}
+                      InputProps={{readOnly: true}}
+                    />
                     <Typography variant="button">
                       Posted By :<br/>
                     </Typography>
@@ -107,21 +91,16 @@ export default function ViewPost(props) {
                     <Typography variant="body2" style={{marginLeft:5}}>
                       Date-{data.date}<br/>Time-{data.time}
                     </Typography>
-                  </CardContent>
-                  
-                  
-                  <CardActions>
-                  
+                  </CardContent>  
+                  <CardActions> 
                     <Button size="small" style={{marginLeft:'auto'}}>
                     <Link to='/posts' className={classes.link} color="primary">
                       Back
                     </Link>
-                    </Button>
-                    
-                    
+                    </Button> 
                   </CardActions>
                 </Card>
                 </Container>
     </React.Fragment>
-  );
+  )
 }

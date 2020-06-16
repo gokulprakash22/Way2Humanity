@@ -1,24 +1,17 @@
-import React from 'react'
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Hidden from '@material-ui/core/Hidden';
-import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
-import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
-import Fab from '@material-ui/core/Fab';
-import Paper from '@material-ui/core/Paper';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
+import React,{useEffect,useContext} from 'react'
+import axios from 'axios'
+import { makeStyles } from '@material-ui/core/styles'
+import {Slide,Grid,Container,Typography,Paper,List,ListItem,Divider,IconButton,Hidden} from '@material-ui/core'
+import PriorityHighIcon from '@material-ui/icons/PriorityHigh'
+import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew'
+import {Context} from './index'
 
 const useStyles= makeStyles((theme) => ({
     grid:{
         marginTop: theme.spacing(15),
         paddingLeft:theme.spacing(4),
+        zIndex: 1,
+        position: 'relative'
        
     },
    grid2:{
@@ -27,7 +20,6 @@ const useStyles= makeStyles((theme) => ({
     paper:{
         marginTop: theme.spacing(4),
     },
-    
       img: {
         width: '100%',
         height: '100%',
@@ -39,11 +31,24 @@ const useStyles= makeStyles((theme) => ({
 }))
 
 export default function Poster(){
-    const classes = useStyles();
+    const classes = useStyles()
+    const {userContext} = useContext(Context)
+    const [user,setUser] = userContext
+    useEffect(() => {
+        axios.get('/api/users/logout')
+          .then(res => {
+            setUser({
+              isAuth:false,
+              name:'',
+              email:''
+            })
+          })
+      },[])
     return(
         <>
         <div className='poster'>
             <Grid container>
+            <Slide direction="right" in={true} mountOnEnter unmountOnExit>
                 <Grid item  className={classes.grid} xs={12} sm={7}>
                     <Hidden mdUp>
                     <Typography variant="h3" gutterBottom className={classes.text}>Be the reason someone smiles.</Typography>
@@ -53,6 +58,7 @@ export default function Poster(){
                     </Hidden>
                     <Typography variant="button" display="block" gutterBottom  className={classes.text}>You Don't Need Reason To Help Others.<br/>Sharing is Caring</Typography>
                 </Grid>
+            </Slide>
             </Grid>
         </div>
         <div>
@@ -60,7 +66,7 @@ export default function Poster(){
         <Paper elevation={3} className={classes.paper}>
         <Grid container>
             <Grid item xs={12} sm={4}>
-                <img src='../img/img1.jpg' className={classes.img}/>
+                <img src='../img/img1.jpg' className={classes.img} alt='Teddy'/>
             </Grid>
             <Grid item className={classes.grid2} xs={12} sm={8}>
             <List>
@@ -82,7 +88,7 @@ export default function Poster(){
         <Grid container>
         <Hidden smUp>
             <Grid item xs={12} sm={4}>
-                <img src='../img/img2.jpg' className={classes.img}/>
+                <img src='../img/img2.jpg' className={classes.img} alt='Hands'/>
             </Grid>
         </Hidden>
             <Grid item className={classes.grid2} xs={12} sm={8}>
@@ -101,7 +107,7 @@ export default function Poster(){
             </Grid>
         <Hidden xsDown>
             <Grid item xs={12} sm={4}>
-                <img src='../img/img2.jpg' className={classes.img}/>
+                <img src='../img/img2.jpg' className={classes.img} alt='Hands'/>
             </Grid>
         </Hidden>
         </Grid>

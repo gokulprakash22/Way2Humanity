@@ -1,37 +1,27 @@
-import React, {useState, useEffect,useContext} from 'react';
-import {Context} from './context.js';
-import axios from 'axios';
-import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import PostsTab from './poststab.js';
-import PostsTabMob from './poststabmob.js';
-import MyPosts from './myposts.js';
-import Hidden from '@material-ui/core/Hidden';
-import Zoom from '@material-ui/core/Zoom';
-import Container from '@material-ui/core/Container';
-import PostCard from './postcard.js';
-import Divider from '@material-ui/core/Divider';
-import Typography from '@material-ui/core/Typography';
-import WarningIcon from '@material-ui/icons/Warning';
+import React, {useEffect,useContext} from 'react'
+import axios from 'axios'
+import { makeStyles } from '@material-ui/core/styles'
+import {CssBaseline,Grid,Zoom,Container,Divider,Typography,Hidden} from '@material-ui/core'
+import WarningIcon from '@material-ui/icons/Warning'
+import {Context,PostsTab,PostsTabMob,MyPosts,PostCard} from './index'
 
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(1),
+    paddingBottom: theme.spacing(1)
   },
   disclaimer:{
     marginTop: theme.spacing(4),
-    textAlign:'center',
+    textAlign:'center'
 },
 warning:{
-  marginTop: theme.spacing(1),
+  marginTop: theme.spacing(1)
 }
 }))
 
 
 export default function PostsGrid() {
-  const classes = useStyles();
+  const classes = useStyles()
   const {pageNoContext,postsContext} = useContext(Context)
   const [pageNo,setPageNo] = pageNoContext
   const [posts,setPosts] = postsContext
@@ -41,9 +31,11 @@ export default function PostsGrid() {
       .then(res => {
         setPosts(res.data)
       })
+      .catch(err => {
+        console.log(err)
+      })
   },[])
 
-  
   return (
     <React.Fragment>
       <CssBaseline />
@@ -87,5 +79,5 @@ export default function PostsGrid() {
         </Container>}
         
     </React.Fragment>
-  );
+  )
 }

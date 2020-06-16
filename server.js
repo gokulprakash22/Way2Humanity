@@ -11,9 +11,11 @@ const passportLocalMongoose = require('passport-local-mongoose')
 const app = express()
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
-app.use(upload())
+app.use(upload({
+    useTempFiles:true
+}))
 app.use(cors())
-//mongodb+srv://admin-gokul:6pms3039@cluster0-oybfo.mongodb.net/W2H?retryWrites=true&w=majority
+
 mongoose.connect(process.env.MONGO_URI,{ useNewUrlParser: true , useUnifiedTopology: true ,useFindAndModify: false },function(err){
     if(!err){
         console.log("Database connected successfully")
@@ -22,7 +24,7 @@ mongoose.connect(process.env.MONGO_URI,{ useNewUrlParser: true , useUnifiedTopol
 mongoose.set("useCreateIndex",true)
 
 app.use(session({
-    secret: process.env.PASSPORT_SECRET,//=mgD$B;hp5S8-Fy.C\-5[m4,v~G_S@Z7<t<~Fv.vg:tb&DT`zg
+    secret: process.env.PASSPORT_SECRET,
     resave: false,
     saveUninitialized: false
 }))

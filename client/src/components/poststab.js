@@ -1,27 +1,21 @@
-import React,{useState,useContext} from 'react';
-import {Context} from './context.js';
-import { makeStyles } from '@material-ui/core/styles';
-import {Link} from 'react-router-dom';
-import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import React,{useContext} from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import {Paper,Tabs,Tab} from '@material-ui/core'
+import {Context} from './index'
 
 const useStyles = makeStyles((theme) =>({
   root: {
     flexGrow: 1,
-    paddingTop: theme.spacing(6),
-  },
-}));
+    paddingTop: theme.spacing(6)
+  }
+}))
 
 export default function PostsTab() {
-  const classes = useStyles();
-  const {pageNoContext,postsContext} = useContext(Context)
+  const classes = useStyles()
+  const {pageNoContext} = useContext(Context)
   const [pageNo,setPageNo] = pageNoContext
 
-
-
   return (
-   
     <Paper className={classes.root}   position="fixed">
       <Tabs
         value={pageNo}
@@ -36,6 +30,5 @@ export default function PostsTab() {
         <Tab wrapped label="My Posts" />
       </Tabs>
     </Paper>
-          
-  );
+  )
 }

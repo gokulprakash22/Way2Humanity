@@ -1,33 +1,17 @@
-import React,{useState,useEffect,createContext} from 'react';
-import {BrowserRouter,Route,Switch} from 'react-router-dom';
-import {ProtectedRoute} from './protectedroute.js';
-import {Context} from './components/context.js';
+import React,{useState} from 'react';
 import './App.css';
-import LogIn from './components/login.js';
-import SignUp from './components/signup.js';
-import PostsTab from './components/poststab.js';
-import PostsTabMob from './components/poststabmob.js';
-import CreateForm from './components/createform.js';
-import UpdateForm from './components/updateform.js';
-import PostCard from './components/postcard.js';
-import PostsGrid from './components/postsgrid.js';
-import MyPosts from './components/myposts.js';
-import Header from './components/header.js';
-import Footer from './components/footer.js';
-import Poster from './components/poster';
-import ViewPost from './components/viewpost.js';
-import Error from './components/error.js';
+import {BrowserRouter,Route,Switch} from 'react-router-dom';
 import { createMuiTheme , ThemeProvider } from '@material-ui/core/styles';
 import indigo from '@material-ui/core/colors/indigo';
 import deepOrange from '@material-ui/core/colors/deepOrange';
+import {Header,Poster,LogIn,SignUp,PostsGrid,ViewPost,CreateForm,UpdateForm,Error,Footer,ProtectedRoute,Context} from './components'
 
 const theme = createMuiTheme({
   palette: {
       primary: indigo,
-      secondary: deepOrange,
-    },
-});
-
+      secondary: deepOrange
+    }
+})
 
 function App() {
   const [pageNo,setPageNo]=useState(0)
@@ -56,7 +40,7 @@ function App() {
         </Context.Provider>
         </BrowserRouter>
     </ThemeProvider>
-  );
+  )
 }
 
 export default App;

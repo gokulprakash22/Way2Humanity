@@ -1,28 +1,18 @@
-import React, {useState,useContext,useEffect} from 'react';
-import {Context} from './context.js';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import {Link} from 'react-router-dom';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import axios from 'axios';
-import red from '@material-ui/core/colors/red';
-
+import React, {useState,useEffect,useContext} from 'react'
+import {Link} from 'react-router-dom'
+import axios from 'axios'
+import { makeStyles } from '@material-ui/core/styles'
+import red from '@material-ui/core/colors/red'
+import {Avatar,Button,CssBaseline,TextField,Grid,Typography,Container} from '@material-ui/core'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import {Context} from './index'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(10),
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   link:{
     textDecoration:'none'
@@ -32,21 +22,19 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.secondary.main
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(3)
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
-
-
+    margin: theme.spacing(3, 0, 2)
+  }
+}))
 
 export default function SignUp(props) {
-  const classes = useStyles();
+  const classes = useStyles()
   const {pageNoContext,userContext} = useContext(Context)
   const [pageNo,setPageNo] = pageNoContext
   const [user,setUser] = userContext
@@ -77,7 +65,7 @@ export default function SignUp(props) {
       })
   },[])
 
-  function handleChange(event){
+  const handleChange=(event) => {
       const {value,name}=event.target;
       setData({...data,[name]:value});
       setError({
@@ -88,11 +76,10 @@ export default function SignUp(props) {
         confirmpassword:false})
   }
 
-  function handleSubmit(event){
+  const handleSubmit=(event) => {
     event.preventDefault()
     axios.post('/api/users/signup', data)
     .then(res => {
-      console.log(res)
       if(res.data.msg==='Correct'){
         setPageNo(0)
         setUser({
@@ -173,7 +160,7 @@ export default function SignUp(props) {
             <Grid item xs={12}>
               <TextField
                 error={error.password}
-                error={data.password.length>0 && data.password.length<8||error.password}
+                error={(data.password.length>0 && data.password.length<8)||error.password}
                 onChange={handleChange}
                 value={data.password}
                 variant="outlined"
@@ -187,7 +174,7 @@ export default function SignUp(props) {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                error={(data.confirmpassword.length>0 && data.confirmpassword!=data.password)||error.confirmpassword}
+                error={(data.confirmpassword.length>0 && data.confirmpassword!==data.password)||error.confirmpassword}
                 onChange={handleChange}
                 value={data.confirmpassword}
                 variant="outlined"
@@ -220,5 +207,5 @@ export default function SignUp(props) {
         </form>
       </div>
     </Container>
-  );
+  )
 }

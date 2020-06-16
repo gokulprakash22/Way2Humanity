@@ -1,21 +1,11 @@
-import React,{useState,useEffect,useContext} from 'react';
-import {Context} from './context.js';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import {Link} from 'react-router-dom';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import axios from 'axios';
-import red from '@material-ui/core/colors/red';
-
+import React,{useState,useEffect,useContext} from 'react'
+import {Link} from 'react-router-dom'
+import axios from 'axios'
+import { makeStyles } from '@material-ui/core/styles'
+import red from '@material-ui/core/colors/red'
+import {Avatar,Button,CssBaseline,TextField,Grid,Typography,Container} from '@material-ui/core'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import {Context} from './index'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -43,8 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LogIn(props) {
- 
+export default function LogIn(props){
   const classes = useStyles();
   const {pageNoContext,userContext} = useContext(Context)
   const [pageNo,setPageNo] = pageNoContext
@@ -66,16 +55,15 @@ useEffect(() => {
       })
   },[])
 
-function handleChange(event){
-    const {value,name}=event.target;
-    setData({...data,[name]:value});
+const handleChange=(event) => {
+    const {value,name}=event.target
+    setData({...data,[name]:value})
 }
 
-function handleSubmit(event){
+const handleSubmit=(event) => {
   event.preventDefault()
   axios.post('/api/users/login',data)
   .then(res => {
-    console.log(res)
     if(res.data.msg==='Correct'){
       setPageNo(0)
       setUser({
@@ -93,7 +81,6 @@ function handleSubmit(event){
     console.log(err)
   })
 }
-
   return (
     <Container component="main" maxWidth="sm">
       <CssBaseline />
@@ -153,5 +140,5 @@ function handleSubmit(event){
         </form>
       </div>
     </Container>
-  );
+  )
 }

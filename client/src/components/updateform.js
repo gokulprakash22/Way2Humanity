@@ -1,34 +1,19 @@
-import React, {useState, useEffect,useContext} from 'react';
-import {Context} from './context.js';
-import axios from 'axios';
-import {Link} from 'react-router-dom';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import red from '@material-ui/core/colors/red';
-import TextField from '@material-ui/core/TextField';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import Switch from '@material-ui/core/Switch';
-import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
-import AssignmentIcon from '@material-ui/icons/Assignment';
-import CloseIcon from '@material-ui/icons/Close';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Final from './final.js';
-import Fade from '@material-ui/core/Fade';
+import React, {useState, useEffect,useContext} from 'react'
+import {Link} from 'react-router-dom'
+import axios from 'axios'
+import { makeStyles } from '@material-ui/core/styles'
+import red from '@material-ui/core/colors/red'
+import {Avatar,Button,CssBaseline,TextField,Radio,RadioGroup,FormControlLabel,FormControl,FormLabel,Switch,IconButton,Typography,Container,Fade} from '@material-ui/core'
+import AssignmentIcon from '@material-ui/icons/Assignment'
+import CloseIcon from '@material-ui/icons/Close'
+import {Context,Final} from './index'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(1),
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   close: {
     marginTop: theme.spacing(6),
@@ -39,22 +24,19 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.secondary.main
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(1)
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
-
-
-
+    margin: theme.spacing(3, 0, 2)
+  }
+}))
 
 export default function UpdateForm(props) {
-  const classes = useStyles();
+  const classes = useStyles()
   const {userContext} = useContext(Context)
   const [user,setUser] = userContext
   const id=props.match.params.id
@@ -93,7 +75,7 @@ export default function UpdateForm(props) {
   },[])
     
   const handleevent=(event) =>{
-    const {name,value}=event.target;
+    const {name,value}=event.target
     if(name==='title' && value.length>30){
       setError({...error,title:true})
     }
@@ -118,7 +100,7 @@ export default function UpdateForm(props) {
     }
     const toggleChecked = () => {
       setChecked((prev) => !prev);
-      if(checked==true){
+      if(checked===true){
         setImage(null)
       }
     };
