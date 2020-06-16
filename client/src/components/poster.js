@@ -1,4 +1,4 @@
-import React,{useEffect,useContext} from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles'
 import {Slide,Grid,Container,Typography,Paper,List,ListItem,Divider,IconButton,Tooltip,ClickAwayListener,Hidden} from '@material-ui/core'
@@ -134,7 +134,7 @@ export default function Poster(){
                   disablePortal: true,
                 }}
                 onClose={handleTooltipClose2}
-                open={open1}
+                open={open2}
                 disableFocusListener
                 disableHoverListener
                 disableTouchListener
