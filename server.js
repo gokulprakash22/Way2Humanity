@@ -1,6 +1,5 @@
 const express = require("express")
 const mongoose = require("mongoose")
-const bodyParser = require("body-parser")
 const upload = require('express-fileupload')
 const cors = require('cors')
 const session = require('express-session')
@@ -10,8 +9,8 @@ const passportLocalMongoose = require('passport-local-mongoose')
 const path = require('path')
 
 const app = express()
-app.use(bodyParser.urlencoded({extended:true}))
-app.use(bodyParser.json())
+app.use(express.json());
+app.use(express.urlencoded({extended: true})); 
 app.use(upload({
     useTempFiles:true
 }))
@@ -43,7 +42,7 @@ app.use("/api/users",require("./routes/users"))
 if(process.env.NODE_ENV==='production'){
     app.use(express.static('client/build'))
     app.get("*",(req,res) => {
-        res.sendFile(path.resolve(_dirname,"../client","build","index.html"))
+        res.sendFile(path.join(__dirname,"client","build","index.html"))
     })
 }
 const PORT = process.env.PORT || 5000
