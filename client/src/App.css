@@ -1,0 +1,10 @@
+.App {
+  text-align: center;
+}
+
+.poster {
+  background-image: url("/img/help.jpg");
+  height:100vh;
+  background-size:cover;
+  background-repeat: no-repeat;
+}
