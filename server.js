@@ -7,6 +7,7 @@ const session = require('express-session')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
 const passportLocalMongoose = require('passport-local-mongoose')
+const path = require('path')
 
 const app = express()
 app.use(bodyParser.urlencoded({extended:true}))
