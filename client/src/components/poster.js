@@ -60,7 +60,7 @@ export default function Poster(){
         <Paper elevation={3} className={classes.paper}>
         <Grid container>
             <Grid item xs={12} sm={4}>
-                <img src='../img/img2.jpg' className={classes.img}/>
+                <img src='../img/img1.jpg' className={classes.img}/>
             </Grid>
             <Grid item className={classes.grid2} xs={12} sm={8}>
             <List>
@@ -82,7 +82,7 @@ export default function Poster(){
         <Grid container>
         <Hidden smUp>
             <Grid item xs={12} sm={4}>
-                <img src='../img/h.jpg' className={classes.img}/>
+                <img src='../img/img2.jpg' className={classes.img}/>
             </Grid>
         </Hidden>
             <Grid item className={classes.grid2} xs={12} sm={8}>
@@ -101,7 +101,7 @@ export default function Poster(){
             </Grid>
         <Hidden xsDown>
             <Grid item xs={12} sm={4}>
-                <img src='../img/h.jpg' className={classes.img}/>
+                <img src='../img/img2.jpg' className={classes.img}/>
             </Grid>
         </Hidden>
         </Grid>

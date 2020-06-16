@@ -50,7 +50,7 @@ router.post("/createpost",function(req,res){
         }
         else{
             const filename=Date.now()+'_'+file.name
-            const imgpath='./client/public/uploads/'+filename
+            const imgpath='./client/build/uploads/'+filename
             file.mv(imgpath,function(err){
                 if(err){
                     console.log(err)
@@ -102,7 +102,7 @@ router.put("/updatepost/:id",function(req,res){
         }
         else{
             const filename=Date.now()+'_'+file.name
-            const imgpath='./client/public/uploads/'+filename
+            const imgpath='./client/build/uploads/'+filename
             file.mv(imgpath,function(err){
                 if(err){
                     console.log(err)
