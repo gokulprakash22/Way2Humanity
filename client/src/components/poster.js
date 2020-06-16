@@ -98,7 +98,7 @@ export default function Poster(){
                 disableFocusListener
                 disableHoverListener
                 disableTouchListener
-                title="Need Help Symbol"
+                title="Posts With This Symbol Denotes That They Need Help"
                 arrow
               >
             <IconButton edge="end" onClick={handleTooltipOpen1}>
@@ -138,7 +138,7 @@ export default function Poster(){
                 disableFocusListener
                 disableHoverListener
                 disableTouchListener
-                title="Volunteer Symbol"
+                title="Posts With This Symbol Denotes That They Are Volunteers And They Are Ready To Help"
                 arrow
               >
             <IconButton edge="end" onClick={handleTooltipOpen2}>
