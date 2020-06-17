@@ -35,20 +35,6 @@ export default function Poster(){
     const classes = useStyles()
     const {userContext} = useContext(Context)
     const [user,setUser] = userContext
-    const [open1, setOpen1] = useState(false);
-    const handleTooltipClose1 = () => {
-        setOpen1(false);
-    }
-    const handleTooltipOpen1 = () => {
-        setOpen1(true);
-    }
-    const [open2, setOpen2] = useState(false);
-    const handleTooltipClose2 = () => {
-        setOpen2(false);
-    }
-    const handleTooltipOpen2 = () => {
-        setOpen2(true);
-    }
     useEffect(() => {
         axios.get('/api/users/logout')
           .then(res => {
@@ -87,26 +73,11 @@ export default function Poster(){
             <List>
             <ListItem>
             <Typography variant="h5" gutterBottom>Anyone who need help can post their needs here.</Typography>
-            <ClickAwayListener onClickAway={handleTooltipClose1}>
-            <div>
-              <Tooltip
-                PopperProps={{
-                  disablePortal: true,
-                }}
-                onClose={handleTooltipClose1}
-                open={open1}
-                disableFocusListener
-                disableHoverListener
-                disableTouchListener
-                title="Posts With This Symbol Denotes That They Need Help"
-                arrow
-              >
-            <IconButton edge="end" onClick={handleTooltipOpen1}>
+            <Tooltip title="Posts With This Symbol Denotes That They Need Help" placement="bottom-end" arrow>
+            <IconButton edge="end">
                 <PriorityHighIcon color='secondary'/>
             </IconButton>
             </Tooltip>
-            </div>
-          </ClickAwayListener>
             </ListItem>
             <Divider />
             <ListItem>
@@ -127,26 +98,11 @@ export default function Poster(){
             <List>
             <ListItem>
             <Typography variant="h5" gutterBottom>Volunteers who ready to help in anyway can also post here.</Typography>
-            <ClickAwayListener onClickAway={handleTooltipClose2}>
-            <div>
-              <Tooltip
-                PopperProps={{
-                  disablePortal: true,
-                }}
-                onClose={handleTooltipClose2}
-                open={open2}
-                disableFocusListener
-                disableHoverListener
-                disableTouchListener
-                title="Posts With This Symbol Denotes That They Are Volunteers And They Are Ready To Help"
-                arrow
-              >
-            <IconButton edge="end" onClick={handleTooltipOpen2}>
+            <Tooltip title="Posts With This Symbol Denotes That They Are Volunteers And Ready To Help" placement="bottom-end" arrow>
+            <IconButton edge="end">
                 <AccessibilityNewIcon color='primary'/>
             </IconButton>
             </Tooltip>
-            </div>
-          </ClickAwayListener>
             </ListItem>
             <Divider />
             <ListItem>

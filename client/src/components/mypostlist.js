@@ -45,7 +45,7 @@ const handleDelete = () =>{
         <Link to={'/posts/'+id} className={classes.link}>
             <Chip
                 icon={<AccessibilityNewIcon  fontSize="small" />}
-                label={(props.title.slice(0,12))+(props.title.length>12?'...':'')}
+                label={(props.title.slice(0,17))+(props.title.length>17?'...':'')}
                 color="primary"
                 style={{marginRight:10}}
         />
@@ -68,7 +68,7 @@ const handleDelete = () =>{
         <Link to={'/posts/'+id} className={classes.link}>
         <Chip
             icon={<PriorityHighIcon  fontSize="small" />}
-            label={(props.title.slice(0,12))+(props.title.length>12?'...':'')}
+            label={(props.title.slice(0,17))+(props.title.length>17?'...':'')}
             color="secondary"
             style={{marginRight:10}}
         />
@@ -87,9 +87,6 @@ const handleDelete = () =>{
         <ListItemText primary={props.title} />
         </Link>
         </Hidden></>}
-        
-           
-            
             <ListItemSecondaryAction>
             <Link to={'/updateform/'+id}>
             <IconButton edge="end">
@@ -99,10 +96,8 @@ const handleDelete = () =>{
             <IconButton edge="end" onClick={handleDelete}>
                 <DeleteIcon className={classes.delete}/>
             </IconButton>
-            </ListItemSecondaryAction>
-            
+            </ListItemSecondaryAction> 
         </ListItem>
-        
         <Divider />
             </>
   )
