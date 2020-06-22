@@ -6,7 +6,10 @@ import {Context} from './index'
 const useStyles = makeStyles((theme) =>({
   root: {
     flexGrow: 1,
-    paddingTop: theme.spacing(6)
+    position:'fixed',
+    width:'100%',
+    top: 60,
+    zIndex:1,
   }
 }))
 
@@ -16,7 +19,7 @@ export default function PostsTab() {
   const [pageNo,setPageNo] = pageNoContext
 
   return (
-    <Paper className={classes.root}   position="fixed">
+    <Paper className={classes.root}>
       <Tabs
         value={pageNo}
         onChange={(event,value) => setPageNo(value)}

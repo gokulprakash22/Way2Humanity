@@ -1,9 +1,10 @@
-import React,{useState} from 'react';
-import './App.css';
-import {BrowserRouter,Route,Switch} from 'react-router-dom';
-import { createMuiTheme , ThemeProvider } from '@material-ui/core/styles';
-import indigo from '@material-ui/core/colors/indigo';
-import deepOrange from '@material-ui/core/colors/deepOrange';
+import React,{useState} from 'react'
+import './App.css'
+import {BrowserRouter,Route,Switch} from 'react-router-dom'
+import { createMuiTheme , ThemeProvider } from '@material-ui/core/styles'
+import indigo from '@material-ui/core/colors/indigo'
+import deepOrange from '@material-ui/core/colors/deepOrange'
+import PostsTabMob from './components/poststabmob'
 import {Header,Poster,LogIn,SignUp,PostsGrid,ViewPost,CreateForm,UpdateForm,Error,Footer,ProtectedRoute,Context} from './components'
 
 const theme = createMuiTheme({

@@ -10,7 +10,8 @@ import {Context,MyPostList} from './index'
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    maxWidth: '100%'
+    maxWidth: '100%',
+    marginTop:theme.spacing(14),
   },
   link:{
     textDecoration:'none',

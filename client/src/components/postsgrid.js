@@ -8,7 +8,8 @@ import {Context,PostsTab,PostsTabMob,MyPosts,PostCard} from './index'
 const useStyles = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(1)
+    paddingBottom: theme.spacing(1),
+    marginTop:theme.spacing(16),
   },
   disclaimer:{
     marginTop: theme.spacing(4),

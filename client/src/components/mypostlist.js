@@ -45,7 +45,7 @@ const handleDelete = () =>{
         <Link to={'/posts/'+id} className={classes.link}>
             <Chip
                 icon={<AccessibilityNewIcon  fontSize="small" />}
-                label={(props.title.slice(0,17))+(props.title.length>17?'...':'')}
+                label={(props.title.slice(0,12))+(props.title.length>12?'...':'')}
                 color="primary"
                 style={{marginRight:10}}
         />
@@ -68,7 +68,7 @@ const handleDelete = () =>{
         <Link to={'/posts/'+id} className={classes.link}>
         <Chip
             icon={<PriorityHighIcon  fontSize="small" />}
-            label={(props.title.slice(0,17))+(props.title.length>17?'...':'')}
+            label={(props.title.slice(0,12))+(props.title.length>12?'...':'')}
             color="secondary"
             style={{marginRight:10}}
         />

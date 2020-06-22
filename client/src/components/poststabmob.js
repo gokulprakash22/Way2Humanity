@@ -6,7 +6,10 @@ import {Context} from './index'
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    paddingTop: theme.spacing(6)
+    position:'fixed',
+    width:'100%',
+    top: 55,
+    zIndex:1
   }
 }))
 
