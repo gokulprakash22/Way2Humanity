@@ -11,9 +11,7 @@ const path = require('path')
 const app = express()
 app.use(express.json());
 app.use(express.urlencoded({extended: true})); 
-app.use(upload({
-    useTempFiles:true
-}))
+app.use(upload({useTempFiles:true}))
 app.use(cors())
 
 mongoose.connect(process.env.MONGO_URI,{ useNewUrlParser: true , useUnifiedTopology: true ,useFindAndModify: false },function(err){

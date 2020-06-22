@@ -76,7 +76,7 @@ export default function Poster(){
             <Grid item className={classes.grid2} xs={12} sm={8}>
             <List>
             <ListItem>
-            <Typography variant="h5" gutterBottom>Anyone who need help can post their needs here.</Typography>
+            <Typography variant="h5" gutterBottom>Anyone who need help can post their needs in this site.</Typography>
             <IconButton edge="end">
                 <PriorityHighIcon color='secondary'/>
             </IconButton>
@@ -101,7 +101,7 @@ export default function Poster(){
             <Grid item className={classes.grid2} xs={12} sm={8}>
             <List>
             <ListItem>
-            <Typography variant="h5" gutterBottom>Volunteers who ready to help in anyway can also post here.</Typography>
+            <Typography variant="h5" gutterBottom>Volunteers who ready to help in anyway can also post in this site.</Typography>
             <IconButton edge="end">
                 <AccessibilityNewIcon color='primary'/>
             </IconButton>
